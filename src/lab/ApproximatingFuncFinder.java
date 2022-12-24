@@ -43,7 +43,8 @@ public class ApproximatingFuncFinder {
         calcYTeorMatrix();
         double lSK = calcLeastSquaresKr();
         this.lSK = lSK;
-        System.out.println("Max power: "+ maxPower +  ", LSK:" + lSK);
+        System.out.println("\nMax power: "+ maxPower +  ", LSK:" + lSK);
+        //showMatrix(yTeorMatrix);
         return lSK;
     }
 
@@ -60,7 +61,7 @@ public class ApproximatingFuncFinder {
         System.out.println("Max power: " + maxPower);
         for(int i=0; i<bMatrix.getRowDimension(); i++) {
             if(i==0)
-                System.out.print("y = " + bMatrix.getEntry(i, 0) + " ");
+                System.out.print("y = " + bMatrix.getEntry(i, 0) + " + ");
             else if(i<bMatrix.getRowDimension()-1)
                 System.out.print(bMatrix.getEntry(i, 0) + "x^" + i + " + ");
             else
@@ -172,5 +173,15 @@ public class ApproximatingFuncFinder {
             paramAc[i] = tCr*Math.sqrt(disp*d[i]);
         }
         return paramAc;
+    }
+
+    public void showMatrix(RealMatrix m) {
+        System.out.println("Power" + maxPower);
+        for(int i=0; i<m.getRowDimension(); i++) {
+            for(int j=0; j<m.getColumnDimension(); j++) {
+                System.out.print(m.getEntry(i, j) + " ");
+            }
+            System.out.println();
+        }
     }
 }
